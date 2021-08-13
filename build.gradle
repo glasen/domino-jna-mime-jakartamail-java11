@@ -1,0 +1,34 @@
+plugins {
+    id "java-library"
+    id "java-library-distribution"
+}
+
+version = "0.9.43-SNAPSHOT"
+group = 'de.glasen-hardt'
+sourceCompatibility = "11"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+apply plugin: 'maven-publish'
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact("build/libs/domino-jna-mime-jakartamail-java11-$version" + ".jar") {
+                extension "jar"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation('de.glasen-hardt:domino-jna-java11:0.9.43-SNAPSHOT')
+    implementation 'net.java.dev.jna:jna:5.8.0'
+    implementation('org.glassfish.corba:glassfish-corba-omgapi:4.2.4')
+    implementation('org.glassfish.corba:glassfish-corba-orb:4.2.4')
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
+}
